@@ -1,4 +1,4 @@
-
+/*
 resource "aws_instance" "cmtr_vkkq9lu1_ec2" {
   instance_type          = "t2.micro"
   ami                    = "ami-0c94855ba95c71c99"
@@ -11,3 +11,6 @@ resource "aws_instance" "cmtr_vkkq9lu1_ec2" {
 
   }
 }
+
+
+ */

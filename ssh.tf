@@ -1,4 +1,6 @@
 
+/*
+
 resource "aws_key_pair" "cmtr_vkkq9lu1_keypair" {
   public_key = var.ssh_key
   key_name   = "cmtr-vkkq9lu1-keypair"
@@ -24,3 +26,6 @@ resource "aws_security_group" "cmtr_vkkq9lu1_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+
+ */
