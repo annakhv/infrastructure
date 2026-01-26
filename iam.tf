@@ -32,10 +32,9 @@ resource "aws_iam_role" "cmtr_vkkq9lu1_iam_role" {
   }
 }
 
-resource "aws_iam_policy_attachment" "aws_iam_role_policy_attachment" {
-  name       = "aws_iam_role_policy_attachment"
+resource "aws_iam_role_policy_attachment" "aws_iam_role_policy_attachment" {
   policy_arn = aws_iam_policy.cmtr_vkkq9lu1_iam_policy.arn
-  roles      = [aws_iam_role.cmtr_vkkq9lu1_iam_role.name]
+  role      = aws_iam_role.cmtr_vkkq9lu1_iam_role.name
 }
 
 resource "aws_iam_instance_profile" "ec2_instance_profile" {
