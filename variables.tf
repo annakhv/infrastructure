@@ -46,3 +46,13 @@ variable "private_instance_id" {
   description = "ID of the private EC2 instance"
   type        = string
 }
+
+variable "public_instance_eni_id" {
+  description = "eni id of ec2 instance"
+  type        = string
+}
+
+variable "private_instance_eni_id" {
+  description = "eni id of ec2 instance"
+  type        = string
+}
