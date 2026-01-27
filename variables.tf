@@ -46,13 +46,3 @@ variable "private_instance_id" {
   description = "ID of the private EC2 instance"
   type        = string
 }
-
-variable "internet_gateway_id" {
-  description = "ID of the Internet Gateway attached to the VPC"
-  type        = string
-}
-
-variable "nat_gateway_id" {
-  description = "ID of the NAT Gateway used by private subnet"
-  type        = string
-}
