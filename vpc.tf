@@ -17,7 +17,7 @@ resource "aws_subnet" "cmtr_vkkq9lu1_01_subnet_public_a" {
   cidr_block        = "10.10.1.0/24"
   availability_zone = "us-east-1a"
   tags = {
-    Name = "cmtr-vkkq9lu1-01-subnet-public-a "
+    Name = "cmtr-vkkq9lu1-01-subnet-public-a"
   }
 }
 
@@ -38,7 +38,7 @@ resource "aws_subnet" "cmtr_vkkq9lu1_01_subnet_public_c" {
   availability_zone = "us-east-1c"
 
   tags = {
-    Name = "cmtr-vkkq9lu1-01-subnet-public-c "
+    Name = "cmtr-vkkq9lu1-01-subnet-public-c"
   }
 }
 
