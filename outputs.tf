@@ -1,3 +1,4 @@
+/*
 output "vpc_id" {
 
   value = aws_vpc.cmtr_vkkq9lu1_01_vpc.id
@@ -44,3 +45,6 @@ output "routing_table_id" {
 
   value = aws_route_table.cmtr_vkkq9lu1_01_rt.id
 }
+
+
+ */

@@ -1,3 +1,24 @@
+
+variable "aws_region" {
+  description = "aws region for resources"
+  type        = string
+}
+
+variable "project_id" {
+  description = "project identifier for tagging"
+  type        = string
+}
+
+variable "state_bucket" {
+  description = "s3 bucket name for remote state"
+  type        = string
+}
+
+variable "state_key" {
+  description = "s3 key path for remote state file"
+  type        = string
+}
+
 /*
 
 variable "ssh_key" {

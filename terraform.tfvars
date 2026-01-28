@@ -10,3 +10,7 @@ private_instance_eni_id = "eni-005640a4892f914f0"
 
 
  */
+state_bucket = "cmtr-vkkq9lu1-tf-state-1769590231"
+aws_region   = "us-east-1"
+project_id   = "cmtr-vkkq9lu1"
+state_key    = "infra.tfstate"
