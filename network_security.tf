@@ -1,4 +1,5 @@
 
+/*
 resource "aws_security_group" "cmtr_vkkq9lu1_ssh_sg" {
   vpc_id = var.vpc_id
   name   = "cmtr-vkkq9lu1-ssh-sg"
@@ -98,3 +99,6 @@ resource "aws_network_interface_sg_attachment" "cmtr_vkkq9lu1_private_instance" 
   network_interface_id = var.public_instance_eni_id
   security_group_id    = aws_security_group.cmtr-vkkq9lu1-private-http-sg.id
 }
+
+
+ */

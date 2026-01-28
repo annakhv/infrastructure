@@ -7,7 +7,7 @@ variable "ssh_key" {
 
 
 
- */
+
 
 ############################################
 # Networking / Security
@@ -56,3 +56,5 @@ variable "private_instance_eni_id" {
   description = "eni id of ec2 instance"
   type        = string
 }
+
+ */
