@@ -1,6 +1,6 @@
-data "aws_vpc" "cmtr_vkkq9lu1_vpc" {
+data "aws_vpc" "cmtr_vkkq9lu1_vpc"  {
   tags = {
-    name = "cmtr-vkkq9lu1-vpc"
+    Name = "cmtr-vkkq9lu1-vpc"
   }
 }
 
