@@ -1,4 +1,4 @@
-data "aws_vpc"  "cmtr_vkkq9lu1_vpc" {
+data "aws_vpc" "cmtr_vkkq9lu1_vpc" {
   tags = {
     name = "cmtr-vkkq9lu1-vpc"
   }
@@ -14,7 +14,7 @@ data "aws_subnet" "public_a" {
     values = ["10.0.1.0/24"]
   }
   filter {
-    name = "vpc-id"
+    name   = "vpc-id"
     values = [data.aws_vpc.cmtr_vkkq9lu1_vpc.id]
   }
 }
@@ -25,7 +25,7 @@ data "aws_subnet" "private_a" {
     values = ["10.0.2.0/24"]
   }
   filter {
-    name = "vpc-id"
+    name   = "vpc-id"
     values = [data.aws_vpc.cmtr_vkkq9lu1_vpc.id]
   }
 }
@@ -36,7 +36,7 @@ data "aws_subnet" "public_b" {
     values = ["10.0.3.0/24"]
   }
   filter {
-    name = "vpc-id"
+    name   = "vpc-id"
     values = [data.aws_vpc.cmtr_vkkq9lu1_vpc.id]
   }
 }
@@ -47,7 +47,7 @@ data "aws_subnet" "private_b" {
     values = ["10.0.4.0/24"]
   }
   filter {
-    name = "vpc-id"
+    name   = "vpc-id"
     values = [data.aws_vpc.cmtr_vkkq9lu1_vpc.id]
   }
 }
