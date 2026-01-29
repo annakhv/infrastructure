@@ -1,81 +1,69 @@
+variable "vpc_name" {
+  description = "Name of the VPC"
+  type        = string
+}
+
+variable "vpc_cidr" {
+  description = "CIDR block for the VPC"
+  type        = string
+}
+
+variable "public_subnet_cidr_a" {
+  description = "CIDR block for public subnet in Availability Zone A"
+  type        = string
+}
+
+variable "private_subnet_cidr_a" {
+  description = "CIDR block for private subnet in Availability Zone A"
+  type        = string
+}
+
+variable "public_subnet_cidr_b" {
+  description = "CIDR block for public subnet in Availability Zone B"
+  type        = string
+}
+
+variable "private_subnet_cidr_b" {
+  description = "CIDR block for private subnet in Availability Zone B"
+  type        = string
+}
+
+variable "ec2_ssh_sg_name" {
+  description = "Security group name allowing SSH access to EC2 instances"
+  type        = string
+}
+
+variable "ec2_http_sg_name" {
+  description = "Security group name allowing HTTP access to EC2 instances"
+  type        = string
+}
+
+variable "lb_http_sg_name" {
+  description = "Security group name allowing HTTP access to the Load Balancer"
+  type        = string
+}
+
+variable "iam_instance_profile_name" {
+  description = "IAM instance profile attached to EC2 instances"
+  type        = string
+}
+
+variable "key_pair_name" {
+  description = "EC2 Key Pair name for SSH access"
+  type        = string
+}
+
+variable "tags" {
+  description = "Common tags applied to all resources"
+  type        = map(string)
+}
+
+variable "ami_id" {
+  description = "amazon machine image id"
+  type        = string
+}
 
 variable "aws_region" {
-  description = "aws region for resources"
+  description = "aws region"
   type        = string
 }
-
-variable "project_id" {
-  description = "project identifier for tagging"
-  type        = string
-}
-
-variable "state_bucket" {
-  description = "s3 bucket name for remote state"
-  type        = string
-}
-
-variable "state_key" {
-  description = "s3 key path for remote state file"
-  type        = string
-}
-
-/*
-
-variable "ssh_key" {
-  description = "Provides custom public SSH key."
-  type        = string
-}
-
-
-
-
-
-############################################
-# Networking / Security
-############################################
-
-variable "allowed_ip_range" {
-  description = "List of IP address ranges allowed to access the infrastructure (for SSH, HTTP, etc.)"
-  type        = list(string)
-}
-
-############################################
-# Existing Infrastructure IDs
-############################################
-
-variable "vpc_id" {
-  description = "ID of the existing VPC where resources will be deployed"
-  type        = string
-}
-
-variable "public_subnet_id" {
-  description = "ID of the public subnet"
-  type        = string
-}
-
-variable "private_subnet_id" {
-  description = "ID of the private subnet"
-  type        = string
-}
-
-variable "public_instance_id" {
-  description = "ID of the public EC2 instance"
-  type        = string
-}
-
-variable "private_instance_id" {
-  description = "ID of the private EC2 instance"
-  type        = string
-}
-
-variable "public_instance_eni_id" {
-  description = "eni id of ec2 instance"
-  type        = string
-}
-
-variable "private_instance_eni_id" {
-  description = "eni id of ec2 instance"
-  type        = string
-}
-
- */

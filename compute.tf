@@ -1,3 +1,4 @@
+/*
 resource "aws_instance" "ec2_sdfaerg" {
   instance_type          = "t2.micro"
   ami                    = "ami-0c94855ba95c71c99"
@@ -8,3 +9,6 @@ resource "aws_instance" "ec2_sdfaerg" {
     Project   = "cmtr-vkkq9lu1"
   }
 }
+
+
+ */

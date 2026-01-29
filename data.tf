@@ -1,4 +1,6 @@
-data "terraform_remote_state" "base_infra" {
+
+
+/*data "terraform_remote_state" "base_infra" {
   backend = "s3"
   config = {
     bucket = var.state_bucket
@@ -6,3 +8,6 @@ data "terraform_remote_state" "base_infra" {
     region = var.aws_region
   }
 }
+
+
+ */
