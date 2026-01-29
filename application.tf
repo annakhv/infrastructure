@@ -1,4 +1,4 @@
-data "aws_vpc" "cmtr_vkkq9lu1_vpc"  {
+data "aws_vpc" "cmtr_vkkq9lu1_vpc" {
   tags = {
     Name = "cmtr-vkkq9lu1-vpc"
   }
@@ -87,15 +87,6 @@ resource "aws_alb" "cmtr_vkkq9lu1_loadbalancer" {
   subnets            = [data.aws_subnet.public_a.id, data.aws_subnet.public_b.id]
 }
 
-resource "aws_lb_listener" "http" {
-  load_balancer_arn = aws_alb.cmtr_vkkq9lu1_loadbalancer.arn
-  protocol          = "HTTP"
-  port              = 80
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.cmtr_tg.arn
-  }
-}
 
 resource "aws_lb_target_group" "cmtr_tg" {
   name     = "cmtr-vkkq9lu1-tg"
@@ -112,6 +103,17 @@ resource "aws_lb_target_group" "cmtr_tg" {
     matcher             = "200"
   }
 }
+
+resource "aws_lb_listener" "http" {
+  load_balancer_arn = aws_alb.cmtr_vkkq9lu1_loadbalancer.arn
+  protocol          = "HTTP"
+  port              = 80
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.cmtr_tg.arn
+  }
+}
+
 resource "aws_autoscaling_attachment" "aws_autoscaling_attachment" {
   autoscaling_group_name = aws_autoscaling_group.cmtr_vkkq9lu1_asg.name
   lb_target_group_arn    = aws_lb_target_group.cmtr_tg.arn
