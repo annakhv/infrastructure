@@ -1,15 +1,63 @@
+data "aws_vpc"  "cmtr_vkkq9lu1_vpc" {
+  tags = {
+    name = "cmtr-vkkq9lu1-vpc"
+  }
+}
+
 data "aws_security_group" "sg" {
   name = "cmtr-vkkq9lu1-sglb"
 }
 
+data "aws_subnet" "public_a" {
+  filter {
+    name   = "cidr-block"
+    values = ["10.0.1.0/24"]
+  }
+  filter {
+    name = "vpc-id"
+    values = [data.aws_vpc.cmtr_vkkq9lu1_vpc.id]
+  }
+}
+
+data "aws_subnet" "private_a" {
+  filter {
+    name   = "cidr-block"
+    values = ["10.0.2.0/24"]
+  }
+  filter {
+    name = "vpc-id"
+    values = [data.aws_vpc.cmtr_vkkq9lu1_vpc.id]
+  }
+}
+
+data "aws_subnet" "public_b" {
+  filter {
+    name   = "cidr-block"
+    values = ["10.0.3.0/24"]
+  }
+  filter {
+    name = "vpc-id"
+    values = [data.aws_vpc.cmtr_vkkq9lu1_vpc.id]
+  }
+}
+
+data "aws_subnet" "private_b" {
+  filter {
+    name   = "cidr-block"
+    values = ["10.0.4.0/24"]
+  }
+  filter {
+    name = "vpc-id"
+    values = [data.aws_vpc.cmtr_vkkq9lu1_vpc.id]
+  }
+}
 
 resource "aws_launch_template" "cmtr_vkkq9lu1_template" {
   name                 = "cmtr-vkkq9lu1-template"
   instance_type        = "t3.micro"
   security_group_names = [var.ec2_http_sg_name, var.ec2_ssh_sg_name]
-  network_interfaces { delete_on_termination = "true" }
-  key_name  = var.key_pair_name
-  user_data = base64encode(file("user_data.sh"))
+  key_name             = var.key_pair_name
+  user_data            = base64encode(file("user_data.sh"))
   metadata_options {
     http_endpoint = "enabled"
     http_tokens   = "optional"
@@ -26,8 +74,8 @@ resource "aws_autoscaling_group" "cmtr_vkkq9lu1_asg" {
   lifecycle { ignore_changes = [load_balancers, target_group_arns] }
   launch_template { id = aws_launch_template.cmtr_vkkq9lu1_template.id }
   vpc_zone_identifier = [
-    var.private_subnet_cidr_a,
-    var.private_subnet_cidr_b
+    data.aws_subnet.private_a.id,
+    data.aws_subnet.private_b.id
   ]
 }
 
@@ -36,7 +84,7 @@ resource "aws_alb" "cmtr_vkkq9lu1_loadbalancer" {
   security_groups    = [data.aws_security_group.sg.id]
   internal           = false
   load_balancer_type = "application"
-  subnets            = [var.public_subnet_cidr_a, var.public_subnet_cidr_b]
+  subnets            = [data.aws_subnet.public_a.id, data.aws_subnet.public_b.id]
 }
 
 resource "aws_lb_listener" "http" {
@@ -44,17 +92,27 @@ resource "aws_lb_listener" "http" {
   protocol          = "HTTP"
   port              = 80
   default_action {
-    type = "fixed-response"
-
-    fixed_response {
-      content_type = "text/plain"
-      message_body = "OK"
-      status_code  = "200"
-    }
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.cmtr_tg.arn
   }
 }
 
+resource "aws_lb_target_group" "cmtr_tg" {
+  name     = "cmtr-vkkq9lu1-tg"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = data.aws_vpc.cmtr_vkkq9lu1_vpc.id
+
+  health_check {
+    path                = "/"
+    interval            = 30
+    timeout             = 5
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+    matcher             = "200"
+  }
+}
 resource "aws_autoscaling_attachment" "aws_autoscaling_attachment" {
-  autoscaling_group_name = "aws_autoscaling_attachment"
-  lb_target_group_arn    = aws_alb.cmtr_vkkq9lu1_loadbalancer.arn
+  autoscaling_group_name = aws_autoscaling_group.cmtr_vkkq9lu1_asg.name
+  lb_target_group_arn    = aws_lb_target_group.cmtr_tg.arn
 }
