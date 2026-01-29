@@ -117,4 +117,8 @@ resource "aws_lb_listener" "http" {
 resource "aws_autoscaling_attachment" "aws_autoscaling_attachment" {
   autoscaling_group_name = aws_autoscaling_group.cmtr_vkkq9lu1_asg.name
   lb_target_group_arn    = aws_lb_target_group.cmtr_tg.arn
+  depends_on = [
+    aws_alb.cmtr_vkkq9lu1_loadbalancer,
+    aws_lb_target_group.cmtr_tg
+  ]
 }
