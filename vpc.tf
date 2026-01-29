@@ -5,7 +5,7 @@ terraform {
     }
   }
 }
-
+/*
 resource "aws_vpc" "cmtr_vkkq9lu1_01_vpc" {
   cidr_block = "10.10.0.0/16"
   tags       = { Name = "cmtr-vkkq9lu1-01-vpc" }
@@ -52,6 +52,7 @@ resource "aws_internet_gateway" "cmtr_vkkq9lu1_01_igw" {
 
 
 
+
 resource "aws_route_table" "cmtr_vkkq9lu1_01_rt" {
   vpc_id = aws_vpc.cmtr_vkkq9lu1_01_vpc.id
   route {
@@ -79,3 +80,6 @@ resource "aws_route_table_association" "PublicRTAssociation_b" {
 }
 
 
+
+
+ */
