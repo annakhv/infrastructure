@@ -12,7 +12,7 @@ data "aws_security_group" "sg_http" {
   name = var.ec2_http_sg_name
 }
 
-data "aws_security_group"  "sg_ssh" {
+data "aws_security_group" "sg_ssh" {
   name = var.ec2_ssh_sg_name
 }
 data "aws_subnet" "public_a" {
@@ -60,11 +60,11 @@ data "aws_subnet" "private_b" {
 }
 
 resource "aws_launch_template" "cmtr_vkkq9lu1_template" {
-  name                 = "cmtr-vkkq9lu1-template"
-  instance_type        = "t3.micro"
+  name                   = "cmtr-vkkq9lu1-template"
+  instance_type          = "t3.micro"
   vpc_security_group_ids = [data.aws_security_group.sg_http.id, data.aws_security_group.sg_ssh.id]
-  key_name             = var.key_pair_name
-  user_data            = base64encode(file("user_data.sh"))
+  key_name               = var.key_pair_name
+  user_data              = base64encode(file("user_data.sh"))
   metadata_options {
     http_endpoint = "enabled"
     http_tokens   = "optional"
