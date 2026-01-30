@@ -65,6 +65,9 @@ resource "aws_launch_template" "cmtr_vkkq9lu1_template" {
   vpc_security_group_ids = [data.aws_security_group.sg_http.id, data.aws_security_group.sg_ssh.id]
   key_name               = var.key_pair_name
   user_data              = base64encode(file("user_data.sh"))
+  iam_instance_profile {
+    name = "cmtr-vkkq9lu1-instance_profile"
+  }
   metadata_options {
     http_endpoint = "enabled"
     http_tokens   = "optional"
