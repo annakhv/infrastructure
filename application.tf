@@ -62,6 +62,7 @@ data "aws_subnet" "private_b" {
 resource "aws_launch_template" "cmtr_vkkq9lu1_template" {
   name                   = "cmtr-vkkq9lu1-template"
   instance_type          = "t3.micro"
+  image_id = "ami-09e6f87a47903347c"
   vpc_security_group_ids = [data.aws_security_group.sg_http.id, data.aws_security_group.sg_ssh.id]
   key_name               = var.key_pair_name
   user_data              = base64encode(file("user_data.sh"))
