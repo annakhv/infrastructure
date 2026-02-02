@@ -12,3 +12,11 @@ resource "aws_instance" "ec2_sdfaerg" {
 
 
  */
+
+resource "aws_instance" "cmtr_vkkq9lu1_instance" {
+  ami                    = data.aws_ami.amazon_linux_2023.id
+  instance_type          = "t2.micro"
+  vpc_security_group_ids = [data.aws_security_group.sg.id]
+  subnet_id              = data.aws_subnet.by_name.id
+  tags                   = { name = "cmtr-vkkq9lu1-instance" }
+}

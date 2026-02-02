@@ -1,8 +1,31 @@
+
+
 variable "vpc_name" {
   description = "Name of the VPC"
   type        = string
 }
 
+variable "aws_region" {
+  description = "aws region"
+  type        = string
+}
+
+variable "project_id" {
+  description = "project identifier for tagging"
+  type        = string
+}
+
+variable "public_subnet_name" {
+  description = "name of public subnet to discover"
+  type        = string
+}
+
+variable "security_group_name" {
+  description = "name of security group to discover"
+  type        = string
+}
+
+/*
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
   type        = string
@@ -67,3 +90,5 @@ variable "aws_region" {
   description = "aws region"
   type        = string
 }
+
+ */
