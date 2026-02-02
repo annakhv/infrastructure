@@ -36,4 +36,4 @@ cat <<EOF > /var/www/html/index.html
 EOF
 
 # Ensure correct permissions
-chmod 644 /var/www/html/index.html
+chmod 755 /var/www/html/index.html
