@@ -107,12 +107,12 @@ resource "aws_lb_target_group" "cmtr_tg" {
   vpc_id   = data.aws_vpc.cmtr_vkkq9lu1_vpc.id
 
   health_check {
-    path                = "/"
+    path                = "/health"
     interval            = 30
     timeout             = 5
     healthy_threshold   = 2
     unhealthy_threshold = 2
-    matcher             = "200"
+    matcher             = "200-299"
   }
 }
 
