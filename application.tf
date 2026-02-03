@@ -1,7 +1,8 @@
-/*
+
 data "aws_vpc" "cmtr_vkkq9lu1_vpc" {
-  tags = {
-    Name = "cmtr-vkkq9lu1-vpc"
+  filter {
+    name   = "tag:Name"
+    values = ["cmtr-vkkq9lu1-vpc"]
   }
 }
 
@@ -137,4 +138,3 @@ resource "aws_autoscaling_attachment" "aws_autoscaling_attachment" {
 }
 
 
- */

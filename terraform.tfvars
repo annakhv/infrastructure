@@ -1,9 +1,12 @@
+/*
 vpc_name            = "cmtr-vkkq9lu1-vpc"
 project_id          = "cmtr-vkkq9lu1"
 aws_region          = "us-east-1"
 public_subnet_name  = "cmtr-vkkq9lu1-public-subnet-1"
 security_group_name = "cmtr-vkkq9lu1-sg"
-/*
+
+
+ */
 vpc_name = "cmtr-vkkq9lu1-vpc"
 vpc_cidr = "10.0.0.0/16"
 
@@ -27,4 +30,4 @@ tags = {
 ami_id     = "ami-09e6f87a47903347c"
 aws_region = "us-east-1"
 
- */
+

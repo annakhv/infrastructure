@@ -1,5 +1,5 @@
 
-
+/*
 variable "vpc_name" {
   description = "Name of the VPC"
   type        = string
@@ -25,7 +25,15 @@ variable "security_group_name" {
   type        = string
 }
 
-/*
+
+
+ */
+
+variable "vpc_name" {
+  description = "Name of the VPC"
+  type        = string
+}
+
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
   type        = string
@@ -91,4 +99,4 @@ variable "aws_region" {
   type        = string
 }
 
- */
+
