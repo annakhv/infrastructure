@@ -98,7 +98,7 @@ resource "aws_autoscaling_group" "cmtr_vkkq9lu1_asg" {
 }
 
 resource "aws_lb" "cmtr_vkkq9lu1_loadbalancer" {
-  name               = "cmtr-vkkq9lu1-loadbalancer"
+  name               = "cmtr-vkkq9lu1-loadbalancer0"
   security_groups    = [data.aws_security_group.sg.id]
   internal           = false
   load_balancer_type = "application"
@@ -113,7 +113,7 @@ resource "aws_lb_target_group" "cmtr_tg" {
   vpc_id   = data.aws_vpc.cmtr_vkkq9lu1_vpc.id
 
   health_check {
-    path                = "/health"
+    path                = "/"
     interval            = 30
     timeout             = 5
     healthy_threshold   = 2
