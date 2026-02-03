@@ -7,16 +7,20 @@ data "aws_vpc" "cmtr_vkkq9lu1_vpc" {
 }
 
 data "aws_security_group" "sg" {
-  name = "cmtr-vkkq9lu1-sglb"
+  name   = "cmtr-vkkq9lu1-sglb"
+  vpc_id = data.aws_vpc.cmtr_vkkq9lu1_vpc.id
 }
 
 data "aws_security_group" "sg_http" {
-  name = var.ec2_http_sg_name
+  name   = var.ec2_http_sg_name
+  vpc_id = data.aws_vpc.cmtr_vkkq9lu1_vpc.id
 }
 
 data "aws_security_group" "sg_ssh" {
-  name = var.ec2_ssh_sg_name
+  name   = var.ec2_ssh_sg_name
+  vpc_id = data.aws_vpc.cmtr_vkkq9lu1_vpc.id
 }
+
 data "aws_subnet" "public_a" {
   filter {
     name   = "cidr-block"
