@@ -42,7 +42,7 @@ data "aws_security_group" "lb" {
   vpc_id = data.aws_vpc.main.id
 }
 
-resource "aws_alb" "cmtr_vkkq9lu1_lb" {
+resource "aws_lb" "cmtr_vkkq9lu1_lb" {
   name = "cmtr-vkkq9lu1-lb"
   subnets = [
     data.aws_subnet.public_subnet_1.id,
@@ -54,7 +54,7 @@ resource "aws_alb" "cmtr_vkkq9lu1_lb" {
   ]
 }
 
-resource "aws_alb_target_group" "tg_blue" {
+resource "aws_lb_target_group" "tg_blue" {
   name     = "cmtr-vkkq9lu1-blue-tg"
   port     = 80
   protocol = "HTTP"
@@ -70,7 +70,7 @@ resource "aws_alb_target_group" "tg_blue" {
   }
 }
 
-resource "aws_alb_target_group" "tg_green" {
+resource "aws_lb_target_group" "tg_green" {
   name     = "cmtr-vkkq9lu1-green-tg"
   port     = 80
   protocol = "HTTP"
@@ -87,7 +87,7 @@ resource "aws_alb_target_group" "tg_green" {
 }
 
 resource "aws_alb_listener" "alb_listener" {
-  load_balancer_arn = aws_alb.cmtr_vkkq9lu1_lb.arn
+  load_balancer_arn = aws_lb.cmtr_vkkq9lu1_lb.arn
   port              = 80
   protocol          = "HTTP"
 
@@ -96,13 +96,13 @@ resource "aws_alb_listener" "alb_listener" {
 
     forward {
       target_group {
-        arn    = aws_alb_target_group.tg_blue.arn
+        arn    = aws_lb_target_group.tg_blue.arn
         weight = var.blue_weight
 
       }
 
       target_group {
-        arn    = aws_alb_target_group.tg_green.arn
+        arn    = aws_lb_target_group.tg_green.arn
         weight = var.green_weight
       }
 
@@ -153,10 +153,10 @@ resource "aws_autoscaling_group" "ag_green" {
 
 resource "aws_autoscaling_attachment" "associate_blue" {
   autoscaling_group_name = aws_autoscaling_group.ag_blue.name
-  lb_target_group_arn    = aws_alb_target_group.tg_blue.arn
+  lb_target_group_arn    = aws_lb_target_group.tg_blue.arn
 }
 
 resource "aws_autoscaling_attachment" "associate_green" {
   autoscaling_group_name = aws_autoscaling_group.ag_green.name
-  lb_target_group_arn    = aws_alb_target_group.tg_green.arn
+  lb_target_group_arn    = aws_lb_target_group.tg_green.arn
 }
