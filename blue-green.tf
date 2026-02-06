@@ -86,7 +86,7 @@ resource "aws_lb_target_group" "tg_green" {
   }
 }
 
-resource "aws_alb_listener" "alb_listener" {
+resource "aws_lb_listener" "alb_listener" {
   load_balancer_arn = aws_lb.cmtr_vkkq9lu1_lb.arn
   port              = 80
   protocol          = "HTTP"
