@@ -27,7 +27,7 @@ variable "security_group_name" {
 
 
 
- */
+
 
 variable "vpc_name" {
   description = "Name of the VPC"
@@ -100,3 +100,17 @@ variable "aws_region" {
 }
 
 
+
+
+ */
+variable "blue_weight" {
+  description = "The traffic weight for the Blue Target Group. Specifies the percentage of traffic routed to the Blue environment."
+  type        = number
+  default     = 100
+}
+
+variable "green_weight" {
+  description = "The traffic weight for the Green Target Group. Specifies the percentage of traffic routed to the Green environment."
+  type        = number
+  default     = 0
+}

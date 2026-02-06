@@ -48,9 +48,12 @@ output "routing_table_id" {
 
 
 
- */
+
 
 output "load_balancer_dns_name" {
   value = aws_lb.cmtr_vkkq9lu1_loadbalancer.dns_name
 }
 
+
+
+ */
